@@ -1,31 +1,18 @@
 import React from 'react';
 
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import {createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-
-import Home from './screens/Home';
-
-const HomeStack = createStackNavigator({
-  Home: {
-    screen: Home,
-    navigationOptions: {
-      headerShown: false,
-    },
-  },
-
-},{initialRouteName: 'Home'})
+import { NavigationContainer } from '@react-navigation/native';
+import TabNavigator from './components/navigation/TabNavigator';
 
 
-
-const App = createSwitchNavigator({
-  App: {
-    screen: HomeStack
-  }
-});
-
-export default createAppContainer(App);
-
-
+export default function App() {
+  return (
+    <NavigationContainer>
+      <TabNavigator />
+    </NavigationContainer>
+  );
+}
 
 // import React, {Component, useEffect} from 'react';
 // import {createAppContainer, createSwitchNavigator} from 'react-navigation';

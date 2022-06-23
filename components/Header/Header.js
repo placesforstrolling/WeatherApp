@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {
@@ -16,75 +16,82 @@ import RadialGradient from 'react-native-radial-gradient';
 
 const Header = () => {
 
+  const [forecast, setForecast] = useState(true);
+  const [date, setDate] = useState('');
+
+  useEffect(() => {
+    const date = new Date();
+    const months = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+    let month = months[date.getMonth()];
+    let day = date.getDate();
+    let year = date.getFullYear();
+    setDate(`${month} ${day}, ${year}`)
+  }, []);
+  
   return (
 
+    <View style={styles.header}>
+      <Text style={styles.city}>Ташкент</Text>
+      <Text style={styles.date}>{date}</Text>
+      
+      <View style={styles.filtersWrapper}>
+          <Pressable 
+            style={[styles.forecast, styles.filter, forecast ? styles.filterActive : null]}
+            onPress={() => setForecast(true)}
+            >
+            <Text style={[styles.filterText, forecast ? styles.filterTextActive : null]}>Прогноз</Text>
+          </Pressable>
+          <Pressable 
+            style={[styles.air, styles.filter, !forecast ? styles.filterActive : null]}
+            onPress={() => setForecast(false)}
+            >
+            <Text style={[styles.filterText, !forecast ? styles.filterTextActive : null]}>Воздух</Text>
+          </Pressable>
+      </View>
+    </View>
 
-    <RadialGradient style={{ flex: 1}}
-      colors={['#0b4c86', '#0a0935']}
-      stops={[0, 0.1]}
-      center={[300, 50]}
-      radius={3000}>
-      {/* <View style={styles.header}>
-        <TouchableOpacity style={styles.iconWrapper}>
-          <Text>
-            <Icon name="apps" style={styles.headerIcon} />
-          </Text>
-        </TouchableOpacity>
-        <View>
-          <View style={styles.location}>
-            <Text>
-              <Icon name="location-on" style={styles.locationIcon} />
-            </Text>
-            <Text style={styles.locationText}>Ohio, US</Text>
-          </View>
-
-        </View>
-
-        <TouchableOpacity style={styles.iconWrapper}>
-          <Text style={styles.headerIcon}>
-            <Icon name="search" style={styles.headerIcon} />
-          </Text>
-        </TouchableOpacity>
-      </View> */}
-
-    </RadialGradient>
 
   );
 }
 
 const styles = StyleSheet.create({
-  locationText: {
-    fontWeight: '800',
-    marginLeft: 5
+  filterTextActive: {
+    color: '#fff'
   },
-  locationIcon: {
-    color: '#85d7cf',
-    fontSize: 18,
+  filterActive: {
+    backgroundColor: '#1A85E5'
   },
-  location: {
+  filterText: {
+    color: '#9f9fb2',
+    fontSize: 12
+  },
+  filter: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    borderRadius: 10
+  },
+  filtersWrapper: {
     flexDirection: 'row',
-    alignItems: 'center',
-
+    backgroundColor: '#161540',
+    borderRadius: 10
   },
-  headerIcon: {
-    color: '#595c63',
-    fontSize: 26,
+  date: {
+    color: '#9f9fb2',
+    fontSize: 12,
+    marginBottom: 25
   },
-  iconWrapper: {
-    width: 40,
-    height: 40,
-    borderRadius: 12,
-    backgroundColor: '#ebeef3',
-    justifyContent: 'center',
-    alignItems: 'center'
+  city: {
+    color: '#fff',
+    fontWeight: '500',
+    fontSize: 22,
+    marginBottom: 10
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 20,
-    paddingTop: 10,
-    paddingBottom: 5
+    backgroundColor: 'rgba(0, 0, 0, 0)',
+    marginTop: 30
   },
 });
 

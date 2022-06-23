@@ -11,25 +11,24 @@ import RadialGradient from 'react-native-radial-gradient';
 
 import Header from "../../components/Header/Header";
 
-const Home = ({navigation}) => {
+const HomeScreen = ({navigation}) => {
 
     return (
+
         <RadialGradient style={{ flex: 1}}
-        colors={['#647DEE', '#7F53AC']}
-        stops={[0, 0.74]}
-        center={[100, 10]}
-        radius={315}>
+        colors={['#0b4c86', '#0a0935']}
+        stops={[0, 0.1]}
+        center={[300, 50]}
+        radius={3000}>
             <SafeAreaView style={styles.body}>
                 <Header/>
             </SafeAreaView>
-        </RadialGradient>
-       
+      </RadialGradient>
     );
 }
 
 const styles = StyleSheet.create({
     body: {
-        backgroundColor: '#fff',
         paddingBottom: 0,
         flex: 1,
     },
@@ -40,4 +39,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Home;
+export default HomeScreen;
