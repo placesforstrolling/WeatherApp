@@ -21,6 +21,10 @@ target 'WeatherApp' do
 
   pod 'SRSRadialGradient', :path => '../node_modules/react-native-radial-gradient'
 
+  pod 'react-native-geolocation', :path => '../node_modules/@react-native-community/geolocation'
+
+  pod 'react-native-location', :path => '../node_modules/react-native-location'
+
   target 'WeatherAppTests' do
     inherit! :complete
     # Pods for testing

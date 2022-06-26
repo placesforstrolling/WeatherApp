@@ -63,13 +63,13 @@ const styles = StyleSheet.create({
   },
   filterText: {
     color: '#9f9fb2',
-    fontSize: 12
+    fontSize: 16
   },
   filter: {
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingTop: 8,
+    paddingBottom: 8,
+    paddingLeft: 25,
+    paddingRight: 25,
     borderRadius: 10
   },
   filtersWrapper: {
@@ -79,13 +79,13 @@ const styles = StyleSheet.create({
   },
   date: {
     color: '#9f9fb2',
-    fontSize: 12,
+    fontSize: 16,
     marginBottom: 25
   },
   city: {
     color: '#fff',
     fontWeight: '500',
-    fontSize: 22,
+    fontSize: 26,
     marginBottom: 10
   },
   header: {

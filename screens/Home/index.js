@@ -10,18 +10,22 @@ import {
 import RadialGradient from 'react-native-radial-gradient';
 
 import Header from "../../components/Header/Header";
+import CurrentWeather from "../../components/CurrentWeather/CurrentWeather";
+import ByHours from "../../components/ByHours/ByHours";
 
 const HomeScreen = ({navigation}) => {
 
     return (
 
         <RadialGradient style={{ flex: 1}}
-        colors={['#0b4c86', '#0a0935']}
+        colors={['#055396', '#070626']}
         stops={[0, 0.1]}
         center={[300, 50]}
         radius={3000}>
             <SafeAreaView style={styles.body}>
                 <Header/>
+                <CurrentWeather/>
+                <ByHours/>
             </SafeAreaView>
       </RadialGradient>
     );
