@@ -15,34 +15,31 @@ import {
 import RadialGradient from 'react-native-radial-gradient';
 
 import ByHoursItem from '../ByHoursItem/ByHoursItem';
+import generateUrl from '../utils/generateUrl';
 
-const ByHours = () => {
-    const iconPath = '../../assets/img/3dweathericons/';
+const ByHours = ({forecastWeather}) => {
+    const [weather, setWeather] = useState([]);
+
+    useEffect(() => {
+      setWeather(forecastWeather);
+     }, [forecastWeather]);
+    
   return (
     <View style={styles.byHours}>
         <Text style={styles.title}>Сегодня</Text>
 
         <ScrollView showsHorizontalScrollIndicator={false} horizontal={true}>
-            <ByHoursItem 
-                temp={32}
-                time={'16.00'}
-                status={require(iconPath + 'sun/4.png')}
-                />
-                <ByHoursItem 
-                temp={30}
-                time={'17.00'}
-                status={require(iconPath + 'moon/19.png')}
-                />
-                <ByHoursItem 
-                temp={30}
-                time={'17.00'}
-                status={require(iconPath + 'sun/8.png')}
-                />
-                <ByHoursItem 
-                temp={30}
-                time={'17.00'}
-                status={require(iconPath + 'moon/20.png')}
-                />
+          {weather.length !== 0 ? weather.forecast.forecastday[0].hour.map((item, i) => (
+            <ByHoursItem
+              key={i}
+              temp={item.temp_c}
+              time={item.time.slice(-5)}
+              status={generateUrl(item.time.slice(-5), 
+                                  weather.forecast.forecastday[0].astro.sunset,
+                                  weather.forecast.forecastday[0].astro.sunrise, 
+                                  item.condition.code)}
+              />
+          )) : null}
         </ScrollView>
     </View>
 
@@ -53,9 +50,9 @@ const ByHours = () => {
 const styles = StyleSheet.create({
     title: {
         color: '#CECED2',
-        fontSize: 16,
+        fontSize: 22,
         marginLeft: 20,
-        marginBottom: 15
+        marginBottom: 20
     },
     byHours: {
         backgroundColor: 'rgba(0, 0, 0, 0)',

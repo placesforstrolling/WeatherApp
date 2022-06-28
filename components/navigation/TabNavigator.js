@@ -43,6 +43,7 @@ const TabNavigator = () => {
               tabBarIcon: ({ color, size }) => (
                 <AntDesign name="home" color={color} size={32} />
               ),
+              tabBarShowLabel: false
             }}
             screenOptions={{
                 headerShown: false
@@ -55,7 +56,7 @@ const TabNavigator = () => {
               tabBarIcon: ({ color, size }) => (
                 <AntDesign name="search1" color={color} size={32} />
               ),
-            //   tabBarBadge: 5,
+              tabBarShowLabel: false
             }}
           />
           <Tab.Screen
@@ -64,8 +65,9 @@ const TabNavigator = () => {
             component={ByDaysScreen}
             options={{
               tabBarIcon: ({ color, size }) => (
-                <AntDesign name="calendar" color={color} size={32} />
+                <AntDesign name="barchart" color={color} size={32} />
               ),
+              tabBarShowLabel: false
             }}
           />
             <Tab.Screen
@@ -75,6 +77,7 @@ const TabNavigator = () => {
               tabBarIcon: ({ color, size }) => (
                 <AntDesign name="setting" color={color} size={32} />
               ),
+              tabBarShowLabel: false
             }}
           />
         </Tab.Navigator>

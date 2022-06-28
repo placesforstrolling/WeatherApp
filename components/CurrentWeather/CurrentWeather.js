@@ -12,51 +12,42 @@ import {
   Dimensions,
   SafeAreaView,
 } from 'react-native';
-import Geolocation from 'react-native-geolocation-service';
 
-import { requestPermissions } from './requestPermissions';
-import { getCurrentWeather } from '../../api/api';
-import generateUrl from '../generateUrl';
+
+import generateUrl from '../utils/generateUrl';
 
 // import Geo from './RequestLocation';
 
-const CurrentWeather = () => {
+const CurrentWeather = ({currentWeather}) => {
 
   const [location, setLocation] = useState('None');
   const [weather, setWeather] = useState([]);
-  const [hour, setHour] = useState(new Date().getHours())
+  const [hour, setHour] = useState(new Date().getHours());
+  
   useEffect(() => {
-    requestPermissions();
-    Geolocation.getCurrentPosition(
-      (position) => {
-        console.log(position);
-        getCurrentWeather(position.coords.latitude, position.coords.longitude, setWeather);
-        console.log(weather);
-      },
-      (error) => {
-        // See error code charts below.
-        console.log(error.code, error.message);
-      },
-      { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-  );
-  }, []);
+   setWeather(currentWeather);
+  }, [currentWeather]);
   
   return (
 
     <View style={styles.weather}>
-      {weather.length !== 0 ?  <Image
-          source={generateUrl(hour, weather.forecast.forecastday[0].astro.sunset, weather.current.condition.code)} 
+      {console.log(weather)}
+      {(weather.length !== 0) ?  <Image
+          source={generateUrl(hour, 
+                              weather.forecast.forecastday[0].astro.sunset, 
+                              weather.forecast.forecastday[0].astro.sunrise, 
+                              weather.current.condition.code)} 
           style={styles.weatherImage}
           resizeMode="contain"/> : null}
        
         <View style={styles.weatherStatisticWrapper}>
           <View style={styles.singleStatistic}>
             <Text style={styles.statisticTitle}>Темп</Text>
-            <Text style={styles.statisticValue}>{weather?.current?.temp_c}</Text>
+            <Text style={styles.statisticValue}>{weather?.current?.temp_c}°C</Text>
           </View>
           <View style={styles.singleStatistic}>
             <Text style={styles.statisticTitle}>Ветер</Text>
-            <Text style={styles.statisticValue}>{weather?.current?.wind_kph}км/ч</Text>
+            <Text style={styles.statisticValue}>{weather?.current?.wind_kph} км/ч</Text>
           </View>
           <View style={styles.singleStatistic}>
             <Text style={styles.statisticTitle}>Влажность</Text>

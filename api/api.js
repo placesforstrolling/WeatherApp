@@ -8,7 +8,6 @@ export async function getCurrentWeather(lat, lon, method) {
       .get(`${API}&q=${lat},${lon}&days=7`)
       .then((response) => response.data)
       .then((data) => {
-        console.log(data);
         method(data)
         // return data;
       })

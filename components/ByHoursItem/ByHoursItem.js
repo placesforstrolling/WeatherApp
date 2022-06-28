@@ -17,9 +17,11 @@ import RadialGradient from 'react-native-radial-gradient';
 
 const ByHoursItem = ({time, temp, status}) => {
 
+    const current = parseInt(time) - parseInt(new Date().getHours()) < 1 && parseInt(time) - parseInt(new Date().getHours()) > -1;
+
   return (
 
-    <View style={styles.item}>
+    <View style={[styles.item, current ? {backgroundColor: '#1A85E5'} : null]}>
         <Image 
             source={status} 
             style={styles.image}

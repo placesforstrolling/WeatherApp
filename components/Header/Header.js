@@ -11,7 +11,7 @@ import {
   Dimensions,
   SafeAreaView,
 } from 'react-native';
-import RadialGradient from 'react-native-radial-gradient';
+// import RadialGradient from 'react-native-radial-gradient';
 
 
 const Header = () => {
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   city: {
     color: '#fff',
     fontWeight: '500',
-    fontSize: 26,
+    fontSize: 28,
     marginBottom: 10
   },
   header: {
